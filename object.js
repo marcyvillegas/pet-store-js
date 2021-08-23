@@ -22,10 +22,16 @@ const petStore = {
             return this._aquatic;
         },
 
+        get clients(){
+            return this._clients;
+        },
+    
         set clients(newClients){
             return this._clients.push(newClients);
-        }
+        },
+
     },
+
 
     //Method that adds new pets to the types of pets
     addNewPet(petType, petName, petPrice) {
@@ -67,13 +73,24 @@ const petStore = {
             }
         }
     },
+
+    
+
 };
 
 
 //CONSOLE LOG
 
+//Add clients
+petStore._pets.clients = "Marcy";
+petStore._pets.clients = "Aleesha";
+petStore._pets.clients = "Anika";
+petStore._pets.clients = "Allen";
+petStore._pets.clients = "Dale";
+petStore._pets.clients = "Bernice";
+petStore._pets.clients = "Albert";
 
-console.log(petStore._pets); //"Array of land"
+console.log(petStore._pets); //"Object pets"
 
 //Add pet
 console.log(petStore.addNewPet('land', 'Rabbit', 600)); //Rabbit -> 600
