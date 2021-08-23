@@ -21,6 +21,10 @@ const petStore = {
         get aquatic() {
             return this._aquatic;
         },
+
+        set clients(newClients){
+            return this._clients.push(newClients);
+        }
     },
 
     //Method that adds new pets to the types of pets
@@ -67,7 +71,7 @@ const petStore = {
 
 
 //CONSOLE LOG
-petStore.clients = "Marcy"
+
 
 console.log(petStore._pets); //"Array of land"
 
