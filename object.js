@@ -1,5 +1,5 @@
 
-
+//Object petStore
 const petStore = {
     _pets: {
         _aerial: [],
@@ -22,12 +22,9 @@ const petStore = {
             return this._aquatic;
         },
 
+        //Getters and setters of clients
         get clients(){
             return this._clients;
-        },
-    
-        set clients(newClients){
-            return this._clients.push(newClients);
         },
 
     },
@@ -53,12 +50,14 @@ const petStore = {
     },
 
     //Method that deletes the pet
-    deletePet(petType,petName) {
+    deletePet(petName) {
         
-        findName = (element) => element.name === petName;
-        const index = this._pets[petType].findIndex(findName);
-        this._pets[petType].splice(index, 1);
-        
+        for(var prop in this._pets){
+                findName = (element) => element.name === petName;
+                const index = this._pets[prop].findIndex(findName);
+                this._pets[prop].splice(index, 1)
+        }
+
     },
 
     //Method that updates the selected pet
@@ -74,45 +73,41 @@ const petStore = {
         }
     },
 
-    
-
+    //Method that lets a client adopt a pet
+    adoptPet(client, petName){
+        this._pets.clients.push(client);
+        console.log(`Our client named ${client} adopted ${petName} at ${Date()}`);
+    }
 };
 
 
 //CONSOLE LOG
-
-//Add clients
-petStore._pets.clients = "Marcy";
-petStore._pets.clients = "Aleesha";
-petStore._pets.clients = "Anika";
-petStore._pets.clients = "Allen";
-petStore._pets.clients = "Dale";
-petStore._pets.clients = "Bernice";
-petStore._pets.clients = "Albert";
-
 console.log(petStore._pets); //"Object pets"
 
 //Add pet
 console.log(petStore.addNewPet('land', 'Rabbit', 600)); //Rabbit -> 600
 console.log(petStore.addNewPet('land', 'Cat', 2500)); //Cat -> 2500
 console.log(petStore.addNewPet('land', 'Dog', 4000)); //Dog -> 4000
+console.log(petStore.addNewPet('land', 'Pig', 7000)); //Pis -> 7000
+console.log(petStore.addNewPet('land', 'Mouse', 200)); //Mouse -> 00
 
-//Read pets
+//Reads a list of pets based on petType
 petStore.printPet("land");
 
-//Delete
-petStore.deletePet("land","Rabbit");
+//Delete a pet
+petStore.deletePet("Dog");
 
-//Read pets
-petStore.printPet("land");
-
-//Update pet
+//Update a pet
 petStore.updatePet("Cat", "Cow", 2500, 8000);
 
 console.log(petStore._pets.land); //"Array of land"
 
+//Client adopts a pet
+petStore.adoptPet("Marcy","Rabbit");
 
-//Methods
+console.log(petStore._pets.clients); //"Array of clients"
+
+//Methods:
 //Add new pet
 //Read all pets
 //Delete new pet
