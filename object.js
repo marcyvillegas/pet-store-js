@@ -9,6 +9,7 @@ const petStore = {
 
         /*
         The purpose of the getters here is to use the property of the object pets in different methods.
+        Without this, the mothods will not work.
         */
 
         //Getters of aerial
