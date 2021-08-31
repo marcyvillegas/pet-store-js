@@ -7,9 +7,13 @@ const petStore = {
         _aquatic: [],
         _clients: [],
 
+        /*
+        The purpose of the getters here is to use the property of the object pets in different methods.
+        */
+
         //Getters of aerial
         get aerial() {
-            return this._aerial;
+            return this._pets[this._aerial];
         },
 
         //Getters of land
@@ -22,17 +26,16 @@ const petStore = {
             return this._aquatic;
         },
 
-        //Getters and setters of clients
-        get clients(){
+        //Getters of clients
+        get clients() {
             return this._clients;
         },
 
     },
 
-
     //Method that adds new pets to the types of pets
     addNewPet(petType, petName, petPrice) {
-        const petInfo = {
+        let petInfo = {
             name: petName,
             price: petPrice,
         };
@@ -51,11 +54,11 @@ const petStore = {
 
     //Method that deletes the pet
     deletePet(petName) {
-        
-        for(var prop in this._pets){
-                findName = (element) => element.name === petName;
-                const index = this._pets[prop].findIndex(findName);
-                this._pets[prop].splice(index, 1)
+
+        for (let prop in this._pets) {
+            let findName = (element) => element.name === petName;
+            const index = this._pets[prop].findIndex(findName);
+            this._pets[prop].splice(index, 1);
         }
 
     },
@@ -63,9 +66,9 @@ const petStore = {
     //Method that updates the selected pet
     updatePet(petName, newPetName, petPrice, newPetPrice) {
 
-        for(var prop in this._pets){
-            for(var i in this._pets[prop]){
-                if(this._pets[prop][i].name === petName && this._pets[prop][i].price === petPrice){
+        for (let prop in this._pets) {
+            for (let i in this._pets[prop]) {
+                if (this._pets[prop][i].name === petName && this._pets[prop][i].price === petPrice) {
                     this._pets[prop][i].name = newPetName;
                     this._pets[prop][i].price = newPetPrice;
                 }
@@ -74,7 +77,7 @@ const petStore = {
     },
 
     //Method that lets a client adopt a pet
-    adoptPet(client, petName){
+    adoptPet(client, petName) {
         this._pets.clients.push(client);
         console.log(`Our client named ${client} adopted ${petName} at ${Date()}`);
     }
@@ -103,9 +106,10 @@ petStore.updatePet("Cat", "Cow", 2500, 8000);
 console.log(petStore._pets.land); //"Array of land"
 
 //Client adopts a pet
-petStore.adoptPet("Marcy","Rabbit");
+petStore.adoptPet("Marcy", "Rabbit");
 
 console.log(petStore._pets.clients); //"Array of clients"
+
 
 //Methods:
 //Add new pet
